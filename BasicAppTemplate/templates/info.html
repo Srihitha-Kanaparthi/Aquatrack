@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AquaTrack - Information</title>
+<link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="content">
+    <div class="logo">
+      <div class="drop"></div>
+      <div class="drop"></div>
+    </div>
+    <h2>Enter your data to get personalized plan</h2>
+
+    <form class="info-form" action="/templates/home2.html" method="get"> <div class="input-group">
+      <div class="form-grid"> 
+        <div class="column">
+          <div class="input-group">
+            <label for="age">Age:</label>
+            <select id="age" name="age" required>
+              <option value="">Select Age</option>
+              </select>
+          </div>
+
+          <div class="input-group">
+            <label for="units">Units:</label>
+            <select id="units" name="units" required>
+              <option value="">Select Units</option>
+              <option value="liters">Liters (L)</option>
+              <option value="milliliters">Milliliters (ml)</option>
+              <option value="ounces">Ounces (oz)</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="climate">Climate:</label>
+            <select id="climate" name="climate" required>
+              <option value="">Select Climate</option>
+              <option value="hot">Hot ☀️</option>
+              <option value="cloudy">Cloudy ☁️</option>
+              <option value="rainy">Rainy 🌧️</option>
+              <option value="temperate">Temperate 🍃</option>
+            </select>
+          </div>
+        </div> 
+
+        <div class="column">
+          <div class="input-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="weight">Weight (lbs):</label>
+            <input type="number" id="weight" name="weight" min="10" max="300" required>
+          </div>
+
+          <div class="input-group">
+            <label for="height">Height:</label>
+            <input type="text" id="height" name="height" placeholder="e.g., 5'10''" required>
+          </div>
+        </div> 
+      </div> 
+
+      <br>
+      <button type="submit" class="button">Next</button> </form>
+    </form>
+  </div>
+</div>
+</body>
+<script>
+        // JavaScript to populate age dropdown from 0 to 101
+        const ageSelect = document.getElementById('age');
+        for (let i = 0; i <= 101; i++) {
+          const option = document.createElement('option');
+          option.value = i;
+          option.text = i;
+          ageSelect.add(option);
+        }
+      </script>
+</html>
