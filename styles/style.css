@@ -1,0 +1,256 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #189ab4;
+    height: 100vh; /* Ensure the body takes up full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .container {
+    text-align: center; /* Center text within the content area */
+  }
+  
+
+  .content {
+    background-color: white;
+    padding: 50px;
+    border-radius: 10px;
+    max-width: 400px; 
+    width: 100%; 
+  }
+  
+  .logo {
+    display: flex;
+    justify-content: center; /* Center drops horizontally */
+    margin-bottom: 30px; 
+  }
+  .logo .drop {
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    margin: 0 10px;
+    position: relative;
+  }
+  
+  .logo .drop::before {
+    content: '';
+    position: absolute;
+    top: 10px; /* Adjust vertical position */
+    left: 10px; /* Adjust horizontal position */
+    width: 80px;
+    height: 80px;
+    background-color: #189ab4;
+    border-radius: 50% 50% 50% 0px; /* Adjust for roundness */
+    transform: rotate(135deg); /* Rotated 180 degrees from -45deg */
+  }
+  
+  .logo .drop:last-child {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .logo .drop:last-child::before {
+    width: 40px;
+    height: 40px;
+    top: 5px; 
+    left: 5px; 
+  }
+  
+  h1 {
+    color: #189ab4; 
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: #363434d5;
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  .button {
+    background-color: #189ab4;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  #info.css
+  
+  .header {
+    margin-bottom: 30px; 
+  }
+  
+  .top-bar {
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 0 auto 20px;
+    width: 40px; 
+    border-radius: 30px;
+  }
+  
+
+  .section-header {
+    text-align: left; 
+    margin-bottom: 20px;
+  }
+  
+  .line {
+    height: 3px;
+    background-color: #62CDFA;
+    border-radius: 15px;
+    margin-bottom: 10
+  }
+
+
+.input-group {
+    display: flex;
+    flex-direction: column; 
+  }
+  
+ 
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #58595a; /* Change the color to blue */ 
+    font-size: 18px; /* Change the font size to 18 pixels */
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .signup-link {
+    margin-top: 20px;
+  }
+  
+  .signup-link a {
+    color: #2196F3; 
+    text-decoration: none; 
+  }
+  
+  /* ... (Your existing CSS from previous examples) ... */
+##infopage.css
+.form-grid {
+    display: flex;
+    gap: 30px; /* Space between columns */
+  }
+  
+  .column {
+    flex: 1; /* Allow columns to grow equally */
+  }
+  
+  h2 {
+    color: #189ab4; 
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  /* ... other styles ... */
+
+.settings-list {
+  /* Add some padding or margin if needed */
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between; /* Align label and value */
+  align-items: center;
+  padding: 10px 15px; /* Adjust padding as needed */
+  border-bottom: 1px solid #eee; /* Add a subtle separator */
+}
+
+.setting-label {
+  display: flex;
+  align-items: center;
+}
+
+.setting-label i {
+  margin-right: 10px;
+}
+
+.setting-value {
+  display: flex;
+  align-items: center;
+}
+
+.setting-value i {
+  margin-left: 10px; 
+}
+
+/* Toggle Switch Styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+/* ... Other CSS ... */
+
+#intakeGoalInput {
+  /* Style the input field as needed */
+  width: 60px; /* Adjust width as needed */
+  padding: 5px; 
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

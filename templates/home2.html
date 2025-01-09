@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaTrack - Dashboard</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+body {
+font-family: 'Arial', sans-serif;
+background-color: #189ab4;
+color: #333;
+}
+.container {
+padding-top: 60px;
+}
+.card {
+border-radius: 10px;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.card-header {
+background-color: #22879b;
+color: #fff;
+border-radius: 10px 10px 0 0;
+}
+.progress {
+height: 20px;
+border-radius: 10px;
+}
+.progress-bar {
+background-color: #28a745;
+}
+.water-glass {
+width: 150px;
+height: 300px;
+margin: 10px auto;
+border-radius: 0 0 15px 15px;
+background-color: #e0f7fa;
+border: 2px solid #b2ebf2;
+position: relative;
+overflow: hidden;
+}
+.water-level {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+background-color: #29b6f6;
+transition: height 0.5s ease;
+}
+.add-water-btn {
+border-radius: 20px;
+}
+.log-table {
+max-height: 200px;
+overflow-y: auto;
+}
+.table td, .table th {
+vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<a class="navbar-brand" href="#">AquaTrack</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav ml-auto">
+<li class="nav-item active">
+<a class="nav-link disabled" href="#" aria-disabled="true" id="home-link">Home</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/templates/profile.html" id="profile-link">Profile</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/templates/settings.html" id="settings-link">Settings</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/templates/analysis.html" id="analysis-link">Analysis</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="/templates/logout.html" id="logout-link">Logout</a>
+</li>
+</ul>
+</div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Today's Progress</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <p>Daily Goal: <span id="dailyGoal">2000</span> ml</p>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progress"></div>
+                            </div>
+                            <p class="mt-2">Drank: <span id="amountDrank">0</span> ml / <span id="dailyGoalDisplay">2000</span> ml</p>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="water-glass">
+                                <div class="water-level" id="waterLevel"></div>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-primary add-water-btn" data-amount="100">+ 100 ml</button>
+                                <button class="btn btn-primary add-water-btn" data-amount="200">+ 200 ml</button>
+                                <button class="btn btn-primary add-water-btn" data-amount="300">+ 300 ml</button>
+                                <button class="btn btn-primary add-water-btn" data-amount="500">+ 500 ml</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="card-title">Intake Log</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped log-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Amount (ml)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="intakeLog">
+                            </tbody>
+                    </table>
+                    <button class="btn btn-danger mt-3" id="clearDataBtn">Clear Data</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    let amountDrank = 0;
+    let intakeLog = loadIntakeLog(); 
+    const dailyGoal = parseInt(document.getElementById('dailyGoal').textContent); 
+
+    // Function to load intake log from localStorage
+    function loadIntakeLog() {
+        const storedLog = localStorage.getItem('intakeLog');
+        return storedLog ? JSON.parse(storedLog) : [];
+    }
+
+    // Function to save intake log to localStorage
+    function saveIntakeLog() {
+        localStorage.setItem('intakeLog', JSON.stringify(intakeLog));
+    }
+
+    // Function to clear data from localStorage and reset the UI
+    function clearData() {
+        localStorage.removeItem('intakeLog');
+        intakeLog = []; // Clear the intakeLog array
+        amountDrank = 0; 
+        updateProgress();
+        updateWaterLevel();
+        displayLog(); 
+    }
+
+    // Function to update the progress bar and amount drank
+    function updateProgress() {
+        const progress = (amountDrank / dailyGoal) * 100;
+        document.getElementById('progress').style.width = progress + '%';
+        document.getElementById('amountDrank').textContent = amountDrank;
+
+        // Disable buttons if the goal is reached
+        if (amountDrank >= dailyGoal) {
+        disableWaterButtons();
+      }
+    }
+
+    // Function to update the water glass level
+    function updateWaterLevel() {
+        const glassHeight = document.querySelector('.water-glass').clientHeight;
+        const waterLevelHeight = (amountDrank / dailyGoal) * glassHeight;
+        document.getElementById('waterLevel').style.height = waterLevelHeight + 'px';
+    }
+
+    // Function to add a log entry
+    function addLog(amount) {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const logEntry = { time: timeString, amount: amount };
+        intakeLog.push(logEntry);
+        saveIntakeLog();
+        displayLog();
+    }
+
+    // Function to display the log in the table
+    function displayLog() {
+        const logTable = document.getElementById('intakeLog');
+        logTable.innerHTML = ''; 
+        intakeLog.forEach(entry => {
+            const row = logTable.insertRow();
+            const timeCell = row.insertCell();
+            const amountCell = row.insertCell();
+            timeCell.textContent = entry.time;
+            amountCell.textContent = entry.amount;
+        });
+    }
+
+    // Event listeners for the add water buttons
+    document.querySelectorAll('.add-water-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            const amount = parseInt(button.getAttribute('data-amount'));
+        // Only add water if below the daily goal
+            if (amountDrank + amount <= dailyGoal) {
+          amountDrank += amount;
+          updateProgress();
+          updateWaterLevel();
+          addLog(amount);
+          saveIntakeLog(); 
+        } else {
+          // You could display a message here if needed:
+          // alert("You've already reached your daily goal!");
+        }
+      });
+    });
+
+    // Event listener for the "Clear Data" button
+    document.getElementById('clearDataBtn').addEventListener('click', clearData);
+
+    // Initial update
+    updateProgress();
+    updateWaterLevel();
+    displayLog(); 
+</script>
+</body>
+</html>
