@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaTrack - Home</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="/styles/style.css">
+<style>
+/* Basic styling - Feel free to customize */
+body {
+  font-family: sans-serif;
+}
+.container {
+  padding-top: 60px;
+}
+.feature-icon {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+/* Scrolling heading */
+.scrolling-heading {
+  background-color: #189ab4;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scrolling-heading h1 {
+  display: inline-block;
+  font-size: 3em;
+  font-weight: bold;
+  color: white;
+  padding: 0;
+  animation: scrollText 10s linear infinite; 
+  position: absolute; /* Position the text absolutely */
+  left: 50%;         /* Place it at the 50% mark */
+  transform: translateX(-50%); /* Adjust position to the left */
+}
+
+@keyframes scrollText {
+  0% { 
+    transform: translateX(100%); /* Start at center */
+  }
+  100% {
+    transform: translateX(calc(-50% - 100vw)); /* End off-screen left */
+  }
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top d-flex">
+  <a class="navbar-brand" href="#" id="app-name-link">AquaTrack</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="scrolling-heading ml-auto">
+    <br><br>
+    <h1>Welcome to AquaTrack</h1>
+  </div>
+  
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/templates/login.html" id="login-link">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/templates/signup.html" id="signup-link">Sign Up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+<div class="container mt-5" id="main-content">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <p class="lead">Your personalized hydration companion.</p>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-4 text-center">
+      <i class="fas fa-tint feature-icon"></i>
+      <h3>Track Your Water Intake</h3>
+      <p>Easily log your water consumption throughout the day and stay on top of your hydration goals.</p>
+    </div>
+    <div class="col-md-4 text-center">
+      <i class="fas fa-chart-bar feature-icon"></i>
+      <h3>Monitor Your Progress</h3>
+      <p>Visualize your hydration patterns with insightful charts and graphs to track your progress over time.</p>
+    </div>
+    <div class="col-md-4 text-center">
+      <i class="fas fa-bell feature-icon"></i>
+      <h3>Stay Hydrated with Reminders</h3>
+      <p>Set personalized reminders to drink water throughout the day and never miss a beat when it comes to staying hydrated.</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
